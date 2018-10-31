@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Styles/Peg.css'
+//import '../Styles/Peg.css';
 
 
 class Peg extends Component {

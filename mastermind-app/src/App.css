@@ -16,3 +16,21 @@
 .App-link {
   color: #61dafb;
 }
+
+.board {
+  background-color: grey;
+}
+
+.row-number {
+  display: inline-block;
+  text-align: left;
+}
+
+.row-container {
+
+}
+
+.peg {
+  border-radius: 100%;
+  margin: 1em;
+}

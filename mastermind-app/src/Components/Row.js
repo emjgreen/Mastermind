@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Peg from './Peg'
-import '../Styles/Row.css'
+import Peg from './Peg';
+//import '../Styles/Row.css';
+import FeedbackSquare from './FeedbackSquare';
 
 class Row extends Component {
   constructor(props) {

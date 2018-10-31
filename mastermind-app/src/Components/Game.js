@@ -16,13 +16,17 @@ class Game extends Component {
   }
 
   handleClick() {
-    this.setState({turn: this.state.turn + 1})
+    this.setState((prevState) => ({
+      turn: prevState.turn + 1
+    }));
   }
 
   render() {
+    const status = 'Please fill out the row ' + this.state.turn.toString();
     return (
       <div className="game">
         <h1>Mastermind</h1>
+        <h3 className="status">{status}</h3>
         <div className="game-board">
           <Board turn={this.state.turn}/>
         </div>
