@@ -3,6 +3,12 @@ import Peg from './Peg'
 import '../Styles/Row.css'
 
 class Row extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      code: [null, null, null, null]
+    };
+  }
 
   render() {
     //console.log("Turn = " + turn.toString() + ", Row = " + row.toString())

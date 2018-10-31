@@ -8,6 +8,11 @@ class Game extends Component {
       turn: 1
     };
     this.handleClick = this.handleClick.bind(this);
+    this.generateRandomCode = this.generateRandomCode.bind(this);
+  }
+
+  generateRandomCode() {
+    console.log("randomCode")
   }
 
   handleClick() {
