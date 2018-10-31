@@ -6,17 +6,35 @@ class Row extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: [null, null, null, null]
+      code: [0, 0, 0, 0]
     };
+    this.handleColorChange = this.handleColorChange.bind(this);
+  }
+
+  handleColorChange(colorIndex, slotIndex) {
+    // console.log(colorIndex);
+    // console.log(slotIndex);
+    const code = this.state.code;
+    if (code[slotIndex] === 5) {
+      code[slotIndex] = 0;
+    } else {
+      code[slotIndex] += 1;
+    }
+    this.forceUpdate();
+    console.log(this.state.code)
   }
 
   render() {
-    //console.log("Turn = " + turn.toString() + ", Row = " + row.toString())
     const row = 10 - this.props.value + 1;
     const numbers = [1,2,3,4];
     const code = numbers.map((number) =>
       (
-          <Peg key={number.toString()} slot={number} turn={this.props.turn} row={row} />
+          <Peg key={number.toString()}
+            turn={this.props.turn}
+            row={row}
+            slot={number - 1}
+            colorIndex={this.state.code[number - 1]}
+            onColorChange={this.handleColorChange}/>
       )
     );
 
