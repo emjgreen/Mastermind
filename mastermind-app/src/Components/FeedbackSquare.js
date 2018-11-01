@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 
 class FeedbackSquare extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 0
+    };
+  }
   render(){
+    const colors=["black", "red", "white"];
     return (
       <div className="feedback-square">
-        <button className="top-button" disabled></button>
-        <button className="top-button" disabled></button>
-        <button className="bottom-button" disabled></button>
-        <button className="bottom-button" disabled></button>
+        <button style={{backgroundColor: colors[this.state.counter]}} disabled>o</button>
+        <button style={{backgroundColor: colors[this.state.counter]}}  disabled>o</button>
+        <button style={{backgroundColor: colors[this.state.counter]}}  disabled>o</button>
+        <button style={{backgroundColor: colors[this.state.counter]}}  disabled>o</button>
       </div>
     );
   }

@@ -3,25 +3,6 @@ import Peg from './Peg';
 import FeedbackSquare from './FeedbackSquare';
 
 class Row extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      code: [0, 0, 0, 0]
-    };
-    this.handleColorChange = this.handleColorChange.bind(this);
-  }
-
-  handleColorChange(slotIndex) {
-    this.props.onCodeChange(slotIndex);
-    // const code = this.state.code;
-    // if (code[slotIndex] === 5) {
-    //   code[slotIndex] = 0;
-    // } else {
-    //   code[slotIndex] += 1;
-    // }
-    // this.forceUpdate();
-    // console.log(this.state.code);
-  }
 
   render() {
     const row = 10 - this.props.value + 1;
@@ -32,7 +13,7 @@ class Row extends Component {
             turn={this.props.turn}
             row={row}
             slot={number - 1}
-            onColorChange={this.handleColorChange}/>
+            onColorChange={this.props.onCodeChange}/>
       )
     );
 
@@ -46,7 +27,7 @@ class Row extends Component {
           {code}
         </div>
         <div id="right">
-          <FeedbackSquare />
+          <FeedbackSquare feedback={this.props.feedback}/>
         </div>
       </div>
     );

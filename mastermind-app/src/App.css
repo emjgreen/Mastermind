@@ -24,8 +24,13 @@
 .row-container {
 }
 
+.feedback-square button {
+  border-radius: 100%;
+  text-align: center;
+}
+
 .peg {
   border-radius: 100%;
-  /* border-style: none; */
+  text-align: center;
   margin: 1em;
 }
