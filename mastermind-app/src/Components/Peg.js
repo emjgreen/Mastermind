@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-//import '../Styles/Peg.css';
-
 
 class Peg extends Component {
   constructor(props) {
@@ -12,7 +10,7 @@ class Peg extends Component {
   }
 
   handleClick(e) {
-    this.props.onColorChange(e.target.value, e.target.slot);
+    this.props.onColorChange(e.target.slot);
     if (this.state.counter === 5) {
       this.setState((prevState) => ({
         counter: prevState.counter = 0
@@ -25,7 +23,6 @@ class Peg extends Component {
   }
 
   render() {
-    const colorIndex = this.props.colorIndex;
     const slotIndex = this.props.slot;
     const colors = ["black", "red", "blue", "orange", "green", "yellow"];
     var isDisabled = this.props.turn === this.props.row ? false : true;
@@ -33,7 +30,6 @@ class Peg extends Component {
       <button className="peg"
         disabled={isDisabled}
         onClick={this.handleClick}
-        value={colorIndex}
         slot={slotIndex}
         style={{backgroundColor: colors[this.state.counter]}}
         >{this.props.slot}</button>

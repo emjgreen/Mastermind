@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Peg from './Peg';
-//import '../Styles/Row.css';
 import FeedbackSquare from './FeedbackSquare';
 
 class Row extends Component {
@@ -12,17 +11,16 @@ class Row extends Component {
     this.handleColorChange = this.handleColorChange.bind(this);
   }
 
-  handleColorChange(colorIndex, slotIndex) {
-    // console.log(colorIndex);
-    // console.log(slotIndex);
-    const code = this.state.code;
-    if (code[slotIndex] === 5) {
-      code[slotIndex] = 0;
-    } else {
-      code[slotIndex] += 1;
-    }
-    this.forceUpdate();
-    console.log(this.state.code)
+  handleColorChange(slotIndex) {
+    this.props.onCodeChange(slotIndex);
+    // const code = this.state.code;
+    // if (code[slotIndex] === 5) {
+    //   code[slotIndex] = 0;
+    // } else {
+    //   code[slotIndex] += 1;
+    // }
+    // this.forceUpdate();
+    // console.log(this.state.code);
   }
 
   render() {
@@ -34,7 +32,6 @@ class Row extends Component {
             turn={this.props.turn}
             row={row}
             slot={number - 1}
-            colorIndex={this.state.code[number - 1]}
             onColorChange={this.handleColorChange}/>
       )
     );
@@ -42,8 +39,15 @@ class Row extends Component {
     const rowNum = <p className="row-number">{row}</p>
     return (
       <div className="row-container">
-        {this.props.turn === (10 - this.props.value + 1) && rowNum}
-        {code}
+        <div id="left">
+          {this.props.turn === (10 - this.props.value + 1) && rowNum}
+        </div>
+        <div id="middle">
+          {code}
+        </div>
+        <div id="right">
+          <FeedbackSquare />
+        </div>
       </div>
     );
   }
