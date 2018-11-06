@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
-import Board from './Board'
+import Board from './Board';
+
+function ErrorMessage(props) {
+  return (
+    <div>
+      {props.warn &&
+        <h4>
+          Please submit a valid code.
+        </h4>
+      }
+    </div>
+  );
+}
 
 class Game extends Component {
   constructor(props) {
@@ -9,6 +21,7 @@ class Game extends Component {
       secretCode: [],
       code: [0, 0, 0, 0],
       feedback: [0, 0, 0, 0], //or numRed: 0 and numWhite: 0
+      showError: false,
     };
     this.handleEnterCode = this.handleEnterCode.bind(this);
     this.generateRandomCode = this.generateRandomCode.bind(this);
@@ -17,36 +30,46 @@ class Game extends Component {
   }
 
   generateRandomCode() {
-    const code = []
-    for(let i=0; i < 4; i++ ){
+    const code = [];
+    for (let i=0; i < 4; i++ ) {
         code.push(Math.floor(Math.random() * 5 + 1));
       }
     this.setState(prevState => ({
       secretCode: code
     }));
-    //console.log(code);
   }
 
   gradeCode() {
     console.log("in gradeCode");
-    console.log("secretCode = " + this.state.secretCode.toString());
-    console.log("code = " + this.state.code.toString());
   }
 
   handleEnterCode() {
     // Logic so someone cannot enter a code with black pegs
-    console.log("entered code")
-    if(this.state.code === this.state.secretCode) {
-      // logic to give feedback
+
+    const code = this.state.code;
+    for (var i in code) {
+      if (code[i] === 0) {
+        console.log("Code contains one or more empty slots");
+        this.setState((prevState) => ({
+          showError: true,
+        }));
+        return;
+      }
+    }
+
+    console.log("secretCode = " + this.state.secretCode.toString());
+    if (this.state.secretCode.toString() === this.state.code.toString()) {
+
       alert("YOU WIN!");
     } else if(this.state.turn === 10) {
       // logic to give feedback
       alert("YOU LOSE!");
     } else {
-      this.gradeCode()
+      //this.gradeCode()
       this.setState((prevState) => ({
         turn: prevState.turn + 1,
         code: [0, 0, 0, 0],
+        showError: false,
       }));
     }
   }
@@ -80,11 +103,11 @@ class Game extends Component {
         </div>
         <div className="game-info">
           <button onClick={this.handleEnterCode}>Enter Code!</button>
+          <ErrorMessage warn={this.state.showError} />
         </div>
       </div>
     );
   }
 }
-
 
 export default Game;

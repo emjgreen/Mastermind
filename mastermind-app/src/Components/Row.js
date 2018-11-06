@@ -3,7 +3,6 @@ import Peg from './Peg';
 import FeedbackSquare from './FeedbackSquare';
 
 class Row extends Component {
-
   render() {
     const row = 10 - this.props.value + 1;
     const numbers = [1,2,3,4];
